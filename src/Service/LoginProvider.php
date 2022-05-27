@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Security\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class LoginProvider
@@ -17,7 +18,7 @@ class LoginProvider
         $this->params = $params;
     }
 
-    public function attemptLogin(string $email, string $password): User
+    public function attemptLogin(string $email, string $password): ?User
     {
         $response = $this->httpClient->request(
             'POST',
@@ -29,6 +30,10 @@ class LoginProvider
                 ]
             ]
         );
+
+        if ($response->getStatusCode() === Response::HTTP_UNAUTHORIZED) {
+            return null;
+        }
 
         $userDecode = json_decode($response->getContent(), true);
         $user = (new User())

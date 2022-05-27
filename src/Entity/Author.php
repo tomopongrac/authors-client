@@ -17,6 +17,11 @@ class Author
     private string $placeOfBirth;
 
     /**
+     * @var Book[]
+     */
+    private ?array $books;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -121,6 +126,24 @@ class Author
     public function setPlaceOfBirth(string $placeOfBirth): Author
     {
         $this->placeOfBirth = $placeOfBirth;
+        return $this;
+    }
+
+    /**
+     * @return Book[]
+     */
+    public function getBooks(): ?array
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param Book[] $books
+     * @return Author
+     */
+    public function setBooks(?array $books): Author
+    {
+        $this->books = $books;
         return $this;
     }
 }

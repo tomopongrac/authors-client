@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Author;
 use App\Representation\PaginatedAuthors;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\Security\Core\Security;
@@ -34,5 +35,19 @@ class AuthorProvider
         );
 
         return $this->serializer->deserialize($response->getContent(), PaginatedAuthors::class, 'json');
+    }
+
+    public function getAuthor(int $id): Author
+    {
+        $response = $this->httpClient->request(
+            'GET',
+            $this->params->get('api_url') . '/api/v2/authors/' . $id,
+            [
+                'auth_bearer' => $this->security->getUser()->getToken()
+            ]
+        );
+
+        return $this->serializer->deserialize($response->getContent(), Author::class, 'json', [
+        ]);
     }
 }

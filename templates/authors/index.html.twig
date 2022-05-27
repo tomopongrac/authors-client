@@ -22,7 +22,7 @@
             {% for author in paginatedAuthors.items %}
                 <tr>
                     <th scope="row">{{ author.id }}</th>
-                    <td><a href="#">{{ author.firstName }}</a></td>
+                    <td><a href="{{ path('app_authors_show', {id: author.id}) }}">{{ author.firstName }}</a></td>
                     <td>{{ author.lastName }}</td>
                     <td>{{ author.birthday|date("Y-m-d") }}</td>
                     <td>{{ author.gender }}</td>

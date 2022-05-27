@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AuthorController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+
+        <dl class="row">
+            <dt class="col-sm-3">First Name</dt>
+            <dd class="col-sm-9">{{ author.firstName }}</dd>
+
+            <dt class="col-sm-3">Last name</dt>
+            <dd class="col-sm-9">{{ author.lastName }}</dd>
+
+            <dt class="col-sm-3">Birthday</dt>
+            <dd class="col-sm-9">{{ author.birthday|date("Y-m-d") }}</dd>
+
+            <dt class="col-sm-3 text-truncate">Gender</dt>
+            <dd class="col-sm-9">{{ author.gender }}</dd>
+
+            <dt class="col-sm-3">Place of birth</dt>
+            <dd class="col-sm-9">{{ author.placeOfBirth }}</dd>
+        </dl>
+        <h4>Books</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in author.books %}
+                <tr>
+                    <th scope="row">{{ book.id }}</th>
+                    <td>{{ book.title }}</td>
+                    <td>-</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

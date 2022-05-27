@@ -25,4 +25,14 @@ class AuthorController extends AbstractController
             'paginatedAuthors' => $this->authorProvider->getAuthors(),
         ]);
     }
+
+    /**
+     * @Route("/authors/{id}", name="app_authors_show")
+     */
+    public function show(int $id): Response
+    {
+        return $this->render('authors/show.html.twig', [
+            'author' => $this->authorProvider->getAuthor($id),
+        ]);
+    }
 }

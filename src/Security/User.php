@@ -10,6 +10,10 @@ class User implements UserInterface
 
     private $roles = [];
 
+    private string $firstName;
+
+    private string $lastName;
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -86,5 +90,41 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName(string $firstName): User
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName(string $lastName): User
+    {
+        $this->lastName = $lastName;
+        return $this;
     }
 }

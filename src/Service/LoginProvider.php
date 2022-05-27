@@ -39,7 +39,8 @@ class LoginProvider
         $user = (new User())
             ->setEmail($userDecode['user']['email'])
             ->setFirstName($userDecode['user']['first_name'])
-            ->setLastName($userDecode['user']['last_name']);
+            ->setLastName($userDecode['user']['last_name'])
+            ->setToken($userDecode['token_key']);
 
         return $user;
     }

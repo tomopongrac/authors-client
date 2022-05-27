@@ -14,6 +14,8 @@ class User implements UserInterface
 
     private string $lastName;
 
+    private string $token;
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -125,6 +127,24 @@ class User implements UserInterface
     public function setLastName(string $lastName): User
     {
         $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     * @return User
+     */
+    public function setToken(string $token): User
+    {
+        $this->token = $token;
         return $this;
     }
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AuthorController!{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper">
+        <h1>Authors</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Place of birth</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in paginatedAuthors.items %}
+                <tr>
+                    <th scope="row">{{ author.id }}</th>
+                    <td><a href="#">{{ author.firstName }}</a></td>
+                    <td>{{ author.lastName }}</td>
+                    <td>{{ author.birthday|date("Y-m-d") }}</td>
+                    <td>{{ author.gender }}</td>
+                    <td>{{ author.placeOfBirth }}</td>
+                    <td>-</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if paginatedAuthors.totalPages > 1 %}
+            <ul class="pagination">
+                {% for i in 1..paginatedAuthors.totalPages %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('app_authors') }}?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

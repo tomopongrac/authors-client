@@ -50,7 +50,13 @@
                 <tr>
                     <th scope="row">{{ book.id }}</th>
                     <td>{{ book.title }}</td>
-                    <td>-</td>
+                    <td>
+                        <form action="{{ path('app_books_delete', { id: book.id }) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="token" value="{{ csrf_token('delete-book') }}"/>
+                            <button type="submit">Delete book</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

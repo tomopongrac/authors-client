@@ -26,7 +26,7 @@ class BookProvider
         $this->serializer = $serializer;
     }
 
-    public function createBook(Book $book)
+    public function createBook(Book $book): bool
     {
         $response = $this->httpClient->request(
             'POST',
@@ -40,7 +40,7 @@ class BookProvider
         return $response->getStatusCode() === Response::HTTP_OK;
     }
 
-    public function deleteBook(int $id)
+    public function deleteBook(int $id): bool
     {
         $response = $this->httpClient->request(
             'DELETE',

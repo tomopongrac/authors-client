@@ -21,7 +21,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/authors", name="app_authors")
+     * @Route("/authors", name="app_authors", methods={"GET"})
      */
     public function index(Request $request): Response
     {
@@ -49,6 +49,16 @@ class AuthorController extends AbstractController
     {
         $submittedToken = $request->request->get('token');
 
+        // 'delete-author' is the same value used in the template to generate the token
+        if (!$this->isCsrfTokenValid('delete-author', $submittedToken)) {
+            $this->addFlash(
+                'notice',
+                'There is some errors. Please try again later!'
+            );
+
+            return $this->redirectToRoute('app_authors');
+        }
+
         /** @var Author $author */
         $author = $this->authorProvider->getAuthor($id);
         if ($author->getBooks() && count($author->getBooks()) > 0) {
@@ -60,15 +70,12 @@ class AuthorController extends AbstractController
             return $this->redirectToRoute('app_authors');
         }
 
-        // 'delete-author' is the same value used in the template to generate the token
-        if ($this->isCsrfTokenValid('delete-author', $submittedToken)) {
-            $this->authorProvider->deleteAuthor($id);
+        $this->authorProvider->deleteAuthor($id);
 
-            $this->addFlash(
-                'notice',
-                'Author was deleted!'
-            );
-            return $this->redirectToRoute('app_authors');
-        }
+        $this->addFlash(
+            'notice',
+            'Author was deleted!'
+        );
+        return $this->redirectToRoute('app_authors');
     }
 }

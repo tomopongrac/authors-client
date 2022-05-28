@@ -97,7 +97,7 @@ class CreateAuthorCommand extends Command
     }
 
     /**
-     * @return array
+     * @return array<string, \DateTime|string>
      */
     protected function getDefaultValues(): array
     {

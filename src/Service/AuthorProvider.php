@@ -27,7 +27,7 @@ class AuthorProvider
         $this->serializer = $serializer;
     }
 
-    public function getAuthors($page = null)
+    public function getAuthors(?string $page = null): PaginatedAuthors
     {
         $pageQueryParameter = $page ? '?page=' . $page : '';
 
@@ -55,7 +55,7 @@ class AuthorProvider
         return $this->serializer->deserialize($response->getContent(), Author::class, 'json');
     }
 
-    public function createAuthor(Author $author, string $token = null)
+    public function createAuthor(Author $author, string $token = null): bool
     {
         $token = $token ?? $this->security->getUser()->getToken();
 
@@ -71,7 +71,7 @@ class AuthorProvider
         return $response->getStatusCode() === Response::HTTP_OK;
     }
 
-    public function deleteAuthor(int $id)
+    public function deleteAuthor(int $id): bool
     {
         $response = $this->httpClient->request(
             'DELETE',

@@ -21,7 +21,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route("/books/new", name="app_books_new")
+     * @Route("/books/new", name="app_books_new", methods={"GET"})
      */
     public function new(Request $request): Response
     {
@@ -51,14 +51,22 @@ class BookController extends AbstractController
         $submittedToken = $request->request->get('token');
 
         // 'delete-book' is the same value used in the template to generate the token
-        if ($this->isCsrfTokenValid('delete-book', $submittedToken)) {
-            $this->bookProvider->deleteBook($id);
-
+        if (!$this->isCsrfTokenValid('delete-book', $submittedToken)) {
             $this->addFlash(
                 'notice',
-                'Book was deleted!'
+                'There is some errors. Please try again later!'
             );
+
             return $this->redirectToRoute('app_authors');
         }
+
+        $this->bookProvider->deleteBook($id);
+
+        $this->addFlash(
+            'notice',
+            'Book was deleted!'
+        );
+
+        return $this->redirectToRoute('app_authors');
     }
 }

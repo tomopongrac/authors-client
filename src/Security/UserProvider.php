@@ -22,7 +22,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
      *
      * @throws UserNotFoundException if the user is not found
      */
-    public function loadUserByIdentifier($identifier): UserInterface
+    public function loadUserByIdentifier(string $identifier): UserInterface
     {
         // Load a User object from your data source or throw UserNotFoundException.
         // The $identifier argument may not actually be a username:
@@ -34,7 +34,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
     /**
      * @deprecated since Symfony 5.3, loadUserByIdentifier() is used instead
      */
-    public function loadUserByUsername($username): UserInterface
+    public function loadUserByUsername(string $username): UserInterface
     {
         return $this->loadUserByIdentifier($username);
     }

@@ -21,7 +21,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route("/books/new", name="app_books_new", methods={"GET"})
+     * @Route("/books/new", name="app_books_new", methods={"GET", "POST"})
      */
     public function new(Request $request): Response
     {

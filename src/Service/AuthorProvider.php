@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Author;
 use App\Representation\PaginatedAuthors;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -48,5 +49,21 @@ class AuthorProvider
         );
 
         return $this->serializer->deserialize($response->getContent(), Author::class, 'json');
+    }
+
+    public function createAuthor(Author $author, string $token = null)
+    {
+        $token = $token ?? $this->security->getUser()->getToken();
+
+        $response = $this->httpClient->request(
+            'POST',
+            $this->params->get('api_url') . '/api/v2/authors',
+            [
+                'auth_bearer' => $token,
+                'json' => json_decode($this->serializer->serialize($author, 'json'), true),
+            ]
+        );
+
+        return $response->getStatusCode() === Response::HTTP_OK;
     }
 }

@@ -21,10 +21,12 @@ class AuthorController extends AbstractController
     /**
      * @Route("/authors", name="app_authors")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $page = $request->query->get('page') ?? null;
+
         return $this->render('authors/index.html.twig', [
-            'paginatedAuthors' => $this->authorProvider->getAuthors(),
+            'paginatedAuthors' => $this->authorProvider->getAuthors($page),
         ]);
     }
 

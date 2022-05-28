@@ -25,11 +25,13 @@ class AuthorProvider
         $this->serializer = $serializer;
     }
 
-    public function getAuthors()
+    public function getAuthors($page = null)
     {
+        $pageQueryParameter = $page ? '?page=' . $page : '';
+
         $response = $this->httpClient->request(
             'GET',
-            $this->params->get('api_url') . '/api/v2/authors',
+            $this->params->get('api_url') . '/api/v2/authors' . $pageQueryParameter,
             [
                 'auth_bearer' => $this->security->getUser()->getToken()
             ]

@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\SerializedName;
+
 class Book
 {
     public int $id;
 
     public string $title;
 
-    public string $releaseDate;
+    /**
+     * @SerializedName("release_date")
+     */
+    public \DateTime $releaseDate;
 
     public string $description;
 
@@ -59,16 +64,16 @@ class Book
     /**
      * @return \DateTime
      */
-    public function getReleaseDate(): string
+    public function getReleaseDate(): \DateTime
     {
-        return date('Y-m-d', strtotime($this->releaseDate));
+        return $this->releaseDate;
     }
 
     /**
      * @param \DateTime $releaseDate
      * @return Book
      */
-    public function setReleaseDate(string $releaseDate): Book
+    public function setReleaseDate(\DateTime $releaseDate): Book
     {
         $this->releaseDate = $releaseDate;
         return $this;

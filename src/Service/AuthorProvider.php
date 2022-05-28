@@ -47,7 +47,6 @@ class AuthorProvider
             ]
         );
 
-        return $this->serializer->deserialize($response->getContent(), Author::class, 'json', [
-        ]);
+        return $this->serializer->deserialize($response->getContent(), Author::class, 'json');
     }
 }

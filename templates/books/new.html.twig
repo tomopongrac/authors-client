@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create a new book{% endblock %}
+
+{% block body %}
+    <h1>Create Book</h1>
+        {{ form_start(bookForm) }}
+        <div class="form-group">
+        {{ form_row(bookForm.title, {
+            label: 'Title',
+            class: 'form-control'
+        }) }}
+        </div>
+        {{ form_row(bookForm.releaseDate, {
+            label: 'Release Date'
+        }) }}
+        {{ form_row(bookForm.description, {
+            label: 'Description'
+        }) }}
+        {{ form_row(bookForm.isbn, {
+            label: 'ISBN'
+        }) }}
+        {{ form_row(bookForm.format, {
+            label: 'Format'
+        }) }}
+        {{ form_row(bookForm.numberOfPages, {
+            label: 'Number of pages'
+        }) }}
+        {{ form_row(bookForm.author) }}
+        <button type="submit" class="btn btn-primary">Create</button>
+        {{ form_end(bookForm) }}
+{% endblock %}

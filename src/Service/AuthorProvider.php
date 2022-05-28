@@ -68,4 +68,17 @@ class AuthorProvider
 
         return $response->getStatusCode() === Response::HTTP_OK;
     }
+
+    public function deleteAuthor(int $id)
+    {
+        $response = $this->httpClient->request(
+            'DELETE',
+            $this->params->get('api_url') . '/api/v2/authors/' . $id,
+            [
+                'auth_bearer' => $this->security->getUser()->getToken()
+            ]
+        );
+
+        return $response->getStatusCode() === Response::HTTP_NO_CONTENT;
+    }
 }

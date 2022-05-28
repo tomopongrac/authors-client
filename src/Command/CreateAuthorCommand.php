@@ -48,8 +48,6 @@ class CreateAuthorCommand extends Command
 
         $user = $this->loginProvider->attemptLogin($apiUsername, $apiPassword);
 
-        $token = $user->getToken();
-
         $defaultValues = $this->getDefaultValues();
 
         $question = new Question(

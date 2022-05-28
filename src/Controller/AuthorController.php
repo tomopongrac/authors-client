@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Author;
-use App\Service\AuthorProvider;
+use App\Service\AuthorProviderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AuthorController extends AbstractController
 {
-    private AuthorProvider $authorProvider;
+    private AuthorProviderInterface $authorProvider;
 
-    public function __construct(AuthorProvider $authorProvider)
+    public function __construct(AuthorProviderInterface $authorProvider)
     {
         $this->authorProvider = $authorProvider;
     }

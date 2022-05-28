@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class AuthorProvider
+class AuthorProvider implements AuthorProviderInterface
 {
     private HttpClientInterface $httpClient;
     private ContainerBagInterface $params;

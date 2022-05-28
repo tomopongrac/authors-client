@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\BookFormType;
-use App\Service\BookProvider;
+use App\Service\BookProviderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
 {
-    private BookProvider $bookProvider;
+    private BookProviderInterface $bookProvider;
 
-    public function __construct(BookProvider $bookProvider)
+    public function __construct(BookProviderInterface $bookProvider)
     {
         $this->bookProvider = $bookProvider;
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Book;
-use App\Service\AuthorProvider;
+use App\Service\AuthorProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -18,9 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class BookFormType extends AbstractType
 {
 
-    private AuthorProvider $authorProvider;
+    private AuthorProviderInterface $authorProvider;
 
-    public function __construct(AuthorProvider $authorProvider)
+    public function __construct(AuthorProviderInterface $authorProvider)
     {
         $this->authorProvider = $authorProvider;
     }

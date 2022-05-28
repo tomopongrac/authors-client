@@ -3,8 +3,8 @@
 namespace App\Command;
 
 use App\Entity\Author;
-use App\Service\AuthorProvider;
-use App\Service\LoginProvider;
+use App\Service\AuthorProviderInterface;
+use App\Service\LoginProviderInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,10 +17,10 @@ class CreateAuthorCommand extends Command
     protected static $defaultName = 'app:create-author';
     protected static $defaultDescription = 'Create a new author';
     private ContainerBagInterface $containerBag;
-    private LoginProvider $loginProvider;
-    private AuthorProvider $authorProvider;
+    private LoginProviderInterface $loginProvider;
+    private AuthorProviderInterface $authorProvider;
 
-    public function __construct(ContainerBagInterface $containerBag, LoginProvider $loginProvider, AuthorProvider $authorProvider)
+    public function __construct(ContainerBagInterface $containerBag, LoginProviderInterface $loginProvider, AuthorProviderInterface $authorProvider)
     {
         parent::__construct();
         $this->containerBag = $containerBag;

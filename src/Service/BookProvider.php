@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class BookProvider
+class BookProvider implements BookProviderInterface
 {
     private HttpClientInterface $httpClient;
     private ContainerBagInterface $params;

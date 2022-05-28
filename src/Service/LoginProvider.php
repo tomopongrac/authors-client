@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class LoginProvider
+class LoginProvider implements LoginProviderInterface
 {
     private HttpClientInterface $httpClient;
     private ContainerBagInterface $params;

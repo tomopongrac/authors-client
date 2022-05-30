@@ -30,9 +30,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/authors, roles: ROLE_USER }
-         - { path: ^/profile, roles: ROLE_USER }
-         - { path: ^/books, roles: ROLE_USER }
+         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

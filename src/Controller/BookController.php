@@ -50,6 +50,8 @@ class BookController extends AbstractController
     {
         $submittedToken = $request->request->get('token');
 
+        $previousPage = $request->headers->get('referer');
+
         // 'delete-book' is the same value used in the template to generate the token
         if (!$this->isCsrfTokenValid('delete-book', $submittedToken)) {
             $this->addFlash(
@@ -57,7 +59,7 @@ class BookController extends AbstractController
                 'There is some errors. Please try again later!'
             );
 
-            return $this->redirectToRoute('app_authors');
+            return $this->redirect($previousPage);
         }
 
         $this->bookProvider->deleteBook($id);
@@ -67,6 +69,6 @@ class BookController extends AbstractController
             'Book was deleted!'
         );
 
-        return $this->redirectToRoute('app_authors');
+        return $this->redirect($previousPage);
     }
 }

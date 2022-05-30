@@ -41,7 +41,7 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Title</th>
+                <th scope="col">-</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -49,7 +49,19 @@
             {% for book in author.books %}
                 <tr>
                     <th scope="row">{{ book.id }}</th>
-                    <td>{{ book.title }}</td>
+                    <td>
+                        <strong>Title:</strong> {{ book.title }}
+                        <br />
+                        <strong>Release date:</strong> {{ book.releaseDate|date("Y-m-d") }}
+                        <br />
+                        <strong>Description:</strong> {{ book.description }}
+                        <br />
+                        <strong>ISBN:</strong> {{ book.isbn }}
+                        <br />
+                        <strong>Format:</strong> {{ book.format }}
+                        <br />
+                        <strong>Number of pages:</strong> {{ book.numberOfPages }}
+                    </td>
                     <td>
                         <form action="{{ path('app_books_delete', { id: book.id }) }}" method="post">
                             <input type="hidden" name="_method" value="DELETE" />

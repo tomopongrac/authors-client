@@ -28,10 +28,12 @@
                     <td>{{ author.gender }}</td>
                     <td>{{ author.placeOfBirth }}</td>
                     <td>
+                        <a href="{{ path('app_authors_show', {id: author.id}) }}" class="btn btn-primary mb-2">View
+                            author</a>
                         <form action="{{ path('app_authors_delete', { id: author.id }) }}" method="post">
                             <input type="hidden" name="_method" value="DELETE"/>
                             <input type="hidden" name="token" value="{{ csrf_token('delete-author') }}"/>
-                            <button type="submit">Delete author</button>
+                            <button type="submit" class="btn btn-light">Delete author</button>
                         </form>
                     </td>
                 </tr>

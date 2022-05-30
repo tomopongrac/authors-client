@@ -63,7 +63,7 @@ class CreateAuthorCommand extends Command
         $lastName = $helper->ask($input, $output, $question);
 
         $question = new Question(
-            sprintf('Birthday? [%s] ', $defaultValues['birthday']->format('Y-m-d')),
+            sprintf('Birthday? [%s] ', $defaultValues['birthday']),
             $defaultValues['birthday']
         );
         $birthday = $helper->ask($input, $output, $question);
@@ -83,7 +83,7 @@ class CreateAuthorCommand extends Command
         $author = (new Author())
             ->setFirstName($firstName)
             ->setLastName($lastName)
-            ->setBirthday($birthday)
+            ->setBirthday(new \DateTime($birthday))
             ->setGender($gender)
             ->setPlaceOfBirth($placeOfBirth);
 
@@ -102,7 +102,7 @@ class CreateAuthorCommand extends Command
         return [
             'firstName' => 'John',
             'lastName' => 'Doe',
-            'birthday' => new \DateTime(),
+            'birthday' => (new \DateTime())->format('Y-m-d'),
             'gender' => 'male',
             'placeOfBirth' => 'Zagreb'
         ];

@@ -14,3 +14,8 @@ API_URL=""
 API_USERNAME=""
 API_PASSWORD=""
 ```
+
+For creating a new author from CLI use command
+```
+php ./bin/console app:create-author
+```

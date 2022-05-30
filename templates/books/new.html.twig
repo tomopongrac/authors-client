@@ -4,13 +4,12 @@
 
 {% block body %}
     <h1>Create Book</h1>
+    <div class="p-4">
         {{ form_start(bookForm) }}
-        <div class="form-group">
         {{ form_row(bookForm.title, {
             label: 'Title',
             class: 'form-control'
         }) }}
-        </div>
         {{ form_row(bookForm.releaseDate, {
             label: 'Release Date'
         }) }}
@@ -29,4 +28,5 @@
         {{ form_row(bookForm.author) }}
         <button type="submit" class="btn btn-primary">Create</button>
         {{ form_end(bookForm) }}
+    </div>
 {% endblock %}
